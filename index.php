@@ -23,7 +23,6 @@ print '<html>
 		if( $_REQUEST )
 		{
 			$music = scandir("music/");
-			var_dump($music);
 			print '<script>init("' . $music[key($link)] . '")</script>';
 		}
 print '</html>';
