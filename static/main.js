@@ -1,5 +1,5 @@
 var FFTSIZE = 1024;      // number of samples for the analyser node FFT, min 32
-var TICK_FREQ = 25;     // how often to run the tick function, in milliseconds
+var TICK_FREQ = 30;     // how often to run the tick function, in milliseconds
 var assetsPath = "music/"; // Create a single item to load.
 var src = "";  // set up our source
 var soundInstance;      // the sound instance we create
@@ -59,20 +59,23 @@ function handleLoad(evt) {
 
 function startPlayback(evt) {
 	soundInstance = createjs.Sound.play(assetsPath + src, {loop:0});
-	soundInstance.addEventListener( "complete" , createjs.proxy(next, this));
+	soundInstance.addEventListener( "complete" , createjs.proxy(ajaxGetSong, this));
 
 	// start the tick and point it at the window so we can do some work before updating the stage:
 	createjs.Ticker.addEventListener("tick", tick);
 	createjs.Ticker.setInterval(TICK_FREQ);
 }
 
-function next()
+function next( song )
 {
-	createjs.Ticker.removeEventListener( "tick", tick );
-	createjs.Sound.stop( );
-	createjs.Sound.removeAllEventListeners( );
-	createjs.Sound.activePlugin.dynamicsCompressorNode.disconnect( );
-	init( "21_Boards of Canada - Peacock Tail.mp3" );
+	if( src != "" )
+	{
+		createjs.Ticker.removeEventListener( "tick", tick );
+		createjs.Sound.stop( );
+		createjs.Sound.removeAllEventListeners( );
+		createjs.Sound.activePlugin.dynamicsCompressorNode.disconnect( );
+	}
+	init( song );
 }
 
 function tick(evt) {
@@ -81,7 +84,7 @@ function tick(evt) {
 	analyserNode.getByteTimeDomainData(timeByteData);  // this gives us the waveform
 	//ctx.clearRect(0,0,canvas.width,canvas.height);
 	canvas.width = canvas.width;
-	ctx.fillStyle = "#474747";
+	ctx.fillStyle = "#151515";
 	var width = Math.ceil(canvas.width / freqByteData.length)
 	var lastX = 0;
 	var lastY = 0;
@@ -94,23 +97,25 @@ function tick(evt) {
 		lastY = 255 - freqByteData[i];
 		lastX = i * width;
 		ctx.stroke();
-		//ctx.fillRect(i * 5, 255 - freqByteData[i], 5, freqByteData[i]);
+		ctx.fillRect(i * 3, 255 - freqByteData[i], 3, freqByteData[i]);
 	}
 }
 
-$(document).ready(function()
+function ajaxGetSong( )
 {
-	if( src == "" )
-	{
 		$.ajax(
 			{
 				url : "/song/",
 				type : "POST",
-				data : { a : "1"}
+				data : { a : "rand"}
 			}
 		).done(function( data )
 			{
-				init( data );
+				next( data );
 			});
-	}
+}
+
+$( document ).ready( function()
+{
+	ajaxGetSong();
 });
