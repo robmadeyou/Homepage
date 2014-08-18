@@ -97,7 +97,7 @@ function tick(evt) {
 		lastY = 255 - freqByteData[i];
 		lastX = i * width;
 		ctx.stroke();
-		ctx.fillRect(i * 3, 255 - freqByteData[i], 3, freqByteData[i]);
+		ctx.fillRect(i * width, 255 - freqByteData[i], width, freqByteData[i]);
 	}
 }
 
