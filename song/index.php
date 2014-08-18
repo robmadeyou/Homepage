@@ -2,17 +2,30 @@
 	if( $_POST[ "a" ] )
 	{
 		$dir = scandir('../music');
+		$songs = [];
+		foreach( $dir as $d )
+		{
+			if( endsWith( $d, ".m4a" ))//TODO make this a cron job to avoid incredibly long load times :(
+			{
+				$songs[] = $d;
+			}
+		}
 		if( $_POST[ "a" ] == "rand" )
 		{
-			print $dir[ rand( 1, sizeof( $dir ) ) ];
+			print $songs[ rand( 0, sizeof( $songs ) ) ];
 		}
 		else
 		{
-			print $dir[ intval( $_POST[ "a" ] + 1 ) ];
+			print $songs[ intval( $_POST[ "a" ] ) ];
 		}
 	}
 	else
 	{
 		print "No valid post data";
+	}
+
+	function endsWith( $haystack, $needle )
+	{
+		return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 	}
 ?>
