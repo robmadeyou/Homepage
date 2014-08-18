@@ -13,6 +13,9 @@ print '<html>
 			<div id="bars" style="height: 400px;">
 				<canvas id="barCanvas" height="520"></canvas>
 			</div>
+			<div id="bars" style="height: 400px;">
+				<canvas id="barCanvas2" height="520"></canvas>
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="static/main.js"></script>
@@ -22,8 +25,7 @@ print '<html>
 		$link = $_REQUEST;
 		if( $_REQUEST )
 		{
-			$music = scandir("music/");
-			print '<script>init("' . $music[key($link)] . '")</script>';
+			print '<script> ajaxGetSong( ); </script>';
 		}
 print '</html>';
 ?>

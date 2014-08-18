@@ -117,5 +117,8 @@ function ajaxGetSong( )
 
 $( document ).ready( function()
 {
-	ajaxGetSong();
+    if( src == "" )
+    {
+	    ajaxGetSong();
+    }
 });
