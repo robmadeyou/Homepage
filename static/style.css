@@ -5,3 +5,9 @@ body
     margin-right: 0;
 
 }
+
+#songTitle
+{
+    color: white;
+    font-family: "Courier New";
+}

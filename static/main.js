@@ -30,6 +30,8 @@ function init( song ) {
 		document.getElementById("header").style.display = "none";
 	}
 
+    $( '#songTitle' ).html( src.replace( ".m4a", "" ) );
+
 	// Web Audio only demo, so we register just the WebAudioPlugin and if that fails, display fail message
 	if (!createjs.Sound.registerPlugins([createjs.WebAudioPlugin])) {
 		document.getElementById("error").style.display = "block";
@@ -101,6 +103,12 @@ function tick(evt) {
 	}
 }
 
+/**
+ * Get a random song from an ajax call.
+ *
+ * The call will simply return a string with the name of the song.
+ * The JS library will do all the magic afterwards.
+ */
 function ajaxGetSong( )
 {
 		$.ajax(
@@ -113,6 +121,25 @@ function ajaxGetSong( )
 			{
 				next( data );
 			});
+}
+
+/**
+ * Returns an array of all the songs currently held on the server.
+ * This list updates all the time, as songs are sorted alphabetically they won't
+ * always be in the same index as they were.
+ */
+function getSongList( )
+{
+    $.ajax(
+        {
+            url : "/song/",
+            type : "POST",
+            data : { songList : "yay"}
+        }
+    ).done( function( data )
+        {
+            return data;
+        });
 }
 
 $( document ).ready( function()
