@@ -31,6 +31,7 @@ function init( song ) {
 	}
 
     $( '#songTitle' ).html( src.replace( ".m4a", "" ) );
+	$( '#imgLocation').attr( "src", src.replace( ".m4a", ".jpg" ) );
 
 	// Web Audio only demo, so we register just the WebAudioPlugin and if that fails, display fail message
 	if (!createjs.Sound.registerPlugins([createjs.WebAudioPlugin])) {
