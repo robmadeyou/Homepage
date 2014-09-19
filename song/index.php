@@ -5,7 +5,7 @@
 		$songs = [];
 		foreach( $dir as $d )
 		{
-			if( endsWith( $d, ".m4a" ))//TODO make this a cron job to avoid incredibly long load times :(
+			if( endsWith( $d, ".m4a" ) || endsWith( $d, ".mp3" ) )//TODO make this a cron job to avoid incredibly long load times :(
 			{
 				$songs[] = $d;
 			}
@@ -25,7 +25,7 @@
 		$songs = [];
 		foreach( $dir as $d )
 		{
-			if( endsWith( $d, ".m4a" ))//TODO make this a cron job to avoid incredibly long load times :(
+			if( endsWith( $d, ".m4a" ) || endsWith( $d, ".mp3" ) )//TODO make this a cron job to avoid incredibly long load times :(
 			{
 				$songs[] = $d;
 			}

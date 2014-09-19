@@ -9,9 +9,11 @@ print '<html>
 	</head>
 	<body>
 		<div id="holder">
-			<p id="songTitle"></p>
-			<div id="bars" style="height: 400px;">
-				<canvas id="barCanvas" height="520"></canvas>
+			<div align="center">
+				<p id="songTitle"></p>
+			</div>
+			<div id="bars">
+				<canvas id="barCanvas" height="1000"></canvas>
 			</div>
 			<img id="imgLocation" src="">
 		</div>

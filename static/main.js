@@ -1,5 +1,5 @@
 var FFTSIZE = 1024;      // number of samples for the analyser node FFT, min 32
-var TICK_FREQ = 30;     // how often to run the tick function, in milliseconds
+var TICK_FREQ = 20;     // how often to run the tick function, in milliseconds
 var assetsPath = "music/"; // Create a single item to load.
 var src = "";  // set up our source
 var soundInstance;      // the sound instance we create
@@ -87,20 +87,20 @@ function tick(evt) {
 	analyserNode.getByteTimeDomainData(timeByteData);  // this gives us the waveform
 	//ctx.clearRect(0,0,canvas.width,canvas.height);
 	canvas.width = canvas.width;
-	ctx.fillStyle = "#151515";
+	ctx.fillStyle = "darkblue";
 	var width = Math.ceil(canvas.width / freqByteData.length)
 	var lastX = 0;
 	var lastY = 0;
 	for( var i = 0; i < freqByteData.length; i++)
 	{
 		ctx.beginPath();
-		ctx.strokeStyle =  "red";
+		ctx.strokeStyle =  "orange";
 		ctx.moveTo( lastX, lastY);
-		ctx.lineTo( i * width, 255 - freqByteData[i]);
-		lastY = 255 - freqByteData[i];
+		ctx.lineTo( i * width, canvas.height - timeByteData[i]);
+		lastY = canvas.height - timeByteData[i] * 2;
 		lastX = i * width;
 		ctx.stroke();
-		ctx.fillRect(i * width, 255 - freqByteData[i], width, freqByteData[i]);
+		ctx.fillRect( i * width, 0, width, freqByteData[i] * 2);
 	}
 }
 
