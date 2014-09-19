@@ -87,14 +87,14 @@ function tick(evt) {
 	analyserNode.getByteTimeDomainData(timeByteData);  // this gives us the waveform
 	//ctx.clearRect(0,0,canvas.width,canvas.height);
 	canvas.width = canvas.width;
-	ctx.fillStyle = "darkblue";
+	ctx.fillStyle = "#C84127";
 	var width = Math.ceil(canvas.width / freqByteData.length)
 	var lastX = 0;
 	var lastY = 0;
 	for( var i = 0; i < freqByteData.length; i++)
 	{
 		ctx.beginPath();
-		ctx.strokeStyle =  "orange";
+		ctx.strokeStyle =  "#67C5C2";
 		ctx.moveTo( lastX, lastY);
 		ctx.lineTo( i * width, canvas.height - timeByteData[i]);
 		lastY = canvas.height - timeByteData[i] * 2;
