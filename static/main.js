@@ -87,7 +87,7 @@ function tick(evt) {
 	analyserNode.getByteTimeDomainData(timeByteData);  // this gives us the waveform
 	//ctx.clearRect(0,0,canvas.width,canvas.height);
 	canvas.width = canvas.width;
-	ctx.fillStyle = "#C84127";
+	ctx.fillStyle = "#3D2117";
 	var width = Math.ceil(canvas.width / freqByteData.length)
 	var lastX = 0;
 	var lastY = 0;
