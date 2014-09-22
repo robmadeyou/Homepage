@@ -1,5 +1,6 @@
 var FFTSIZE = 1024;      // number of samples for the analyser node FFT, min 32
 var TICK_FREQ = 20;     // how often to run the tick function, in milliseconds
+var id = 0;
 var assetsPath = "music/"; // Create a single item to load.
 var src = "";  // set up our source
 var soundInstance;      // the sound instance we create
@@ -11,6 +12,7 @@ canvas.style.width = "100%";
 canvas.style.height = "100%";
 canvas.width  = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
+var self = this;
 
 function init( song ) {
 
@@ -30,8 +32,11 @@ function init( song ) {
 		document.getElementById("header").style.display = "none";
 	}
 
-    $( '#songTitle' ).html( src.replace( ".m4a", "" ) );
+    	$( '#songTitle' ).html( '<a href="/?a=' + id + '">' + src.replace( ".m4a", "" ) + '</a>' );
+	$( '#songTitle' ).html( '<a href="/?a=' + id + '">' + src.replace( ".mp3", "" ) + '</a>' );
 	$( '#imgLocation').attr( "src", assetsPath + src.replace( ".m4a", ".jpg" ) );
+	$( '#imgLocation').attr( "src", assetsPath + src.replace( ".mp3", ".jpg" ) );
+
 
 	// Web Audio only demo, so we register just the WebAudioPlugin and if that fails, display fail message
 	if (!createjs.Sound.registerPlugins([createjs.WebAudioPlugin])) {
@@ -62,15 +67,16 @@ function handleLoad(evt) {
 
 function startPlayback(evt) {
 	soundInstance = createjs.Sound.play(assetsPath + src, {loop:0});
-	soundInstance.addEventListener( "complete" , createjs.proxy(ajaxGetSong, this));
+	soundInstance.addEventListener( "complete" , createjs.proxy(getRandomSong, this));
 
 	// start the tick and point it at the window so we can do some work before updating the stage:
 	createjs.Ticker.addEventListener("tick", tick);
 	createjs.Ticker.setInterval(TICK_FREQ);
 }
 
-function next( song )
+function next( song, songID )
 {
+	id = songID;
 	if( src != "" )
 	{
 		createjs.Ticker.removeEventListener( "tick", tick );
@@ -104,23 +110,56 @@ function tick(evt) {
 	}
 }
 
+$(document).ready(function()
+{
+	$.ajax(
+	{
+		url : "/song/",
+		type : "POST",
+		data : { search : "a" }
+	}).done(function( data )
+	{
+		data = JSON.parse( data );
+		var search = $( "#search" );
+		search.html( "" );
+		for( var i = 0; i < data.length; i++)
+		{
+			search.append( '<a href="/?a=' + data[i].ID + '">' + data[i].Song + '</a><br>');
+		}
+		console.log( data );
+	});
+});
+
+
+function getRandomSong()
+{
+	ajaxGetSong( null );
+}
+
 /**
  * Get a random song from an ajax call.
  *
  * The call will simply return a string with the name of the song.
  * The JS library will do all the magic afterwards.
  */
-function ajaxGetSong( )
+function ajaxGetSong( song )
 {
+	if( song == null )
+	{
+		song = "rand";
+	}
+
 		$.ajax(
 			{
 				url : "/song/",
 				type : "POST",
-				data : { a : "rand"}
+				data : { a : song}
 			}
 		).done(function( data )
 			{
-				next( data );
+				data = JSON.parse( data );
+				console.log( data );
+				self.next( data.Song, data.ID );
 			});
 }
 
@@ -145,8 +184,10 @@ function getSongList( )
 
 $( document ).ready( function()
 {
-    if( src == "" )
-    {
+    setTimeout( function(){
+        if( src == "" )
+        {
 	    ajaxGetSong();
-    }
+        }
+    }, 500 );
 });

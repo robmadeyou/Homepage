@@ -16,6 +16,8 @@ print '<html>
 				<canvas id="barCanvas" height="1000"></canvas>
 			</div>
 			<img id="imgLocation" src="">
+			<div id="search">
+			</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="static/main.js"></script>
@@ -23,9 +25,12 @@ print '<html>
 ?>
 	<?php
 		$link = $_REQUEST;
-		if( $_REQUEST )
+		if( $_REQUEST[ "a" ] )
 		{
-			print '<script> ajaxGetSong( ); </script>';
+			print '<script> ajaxGetSong( ' . $_REQUEST[ "a" ] . ' ); </script>';
 		}
 print '</html>';
+$file = fopen( (new DateTime)->format( "Y-m-d" ) . "", "a" );
+fwrite( $file, $_SERVER['REMOTE_ADDR'] . ' - ' . (new DateTime)->format( "H-i-s" ) . "\n");
+fclose($file);
 ?>
