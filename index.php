@@ -16,6 +16,7 @@ print '<html>
 				<canvas id="barCanvas" height="1000"></canvas>
 			</div>
 			<img id="imgLocation" src="">
+			<input type="text" id="searchIn">
 			<div id="search">
 			</div>
 		</div>

@@ -60,6 +60,7 @@
                 {
                         if( stristr( $songs[ $i ], $query ))
 			{
+				$song = null;
 				$song->Song = $songs[ $i ];
 				$song->ID = $i;
                                 $filtered[] = $song;

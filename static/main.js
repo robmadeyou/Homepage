@@ -110,13 +110,14 @@ function tick(evt) {
 	}
 }
 
-$(document).ready(function()
+$( "#searchIn" ).keypress(function()
 {
+	var text = $(this).val();
 	$.ajax(
 	{
 		url : "/song/",
 		type : "POST",
-		data : { search : "a" }
+		data : { search : text }
 	}).done(function( data )
 	{
 		data = JSON.parse( data );
