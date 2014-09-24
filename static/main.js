@@ -8,10 +8,12 @@ var analyserNode;       // the analyser node that allows us to visualize the aud
 var freqFloatData, freqByteData, timeByteData;  // arrays to retrieve data from analyserNode
 var canvas = document.getElementById( "barCanvas" );
 var ctx = canvas.getContext( "2d" );
+var volume = 1;
 canvas.style.width = "100%";
 canvas.style.height = "100%";
 canvas.width  = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
+
 var self = this;
 
 function init( song ) {
@@ -34,9 +36,9 @@ function init( song ) {
 
     	$( '#songTitle' ).html( '<a href="/?a=' + id + '">' + src.replace( ".m4a", "" ) + '</a>' );
 	$( '#songTitle' ).html( '<a href="/?a=' + id + '">' + src.replace( ".mp3", "" ) + '</a>' );
-	$( '#imgLocation').attr( "src", assetsPath + src.replace( ".m4a", ".jpg" ) );
-	$( '#imgLocation').attr( "src", assetsPath + src.replace( ".mp3", ".jpg" ) );
-
+	$( '#img' ).attr( "src", assetsPath + src.replace( ".m4a", ".jpg" ) );
+	$( '#img' ).attr( "src", assetsPath + src.replace( ".mp3", ".jpg" ) );
+	$( '#title').html( src );
 
 	// Web Audio only demo, so we register just the WebAudioPlugin and if that fails, display fail message
 	if (!createjs.Sound.registerPlugins([createjs.WebAudioPlugin])) {
@@ -68,7 +70,7 @@ function handleLoad(evt) {
 function startPlayback(evt) {
 	soundInstance = createjs.Sound.play(assetsPath + src, {loop:0});
 	soundInstance.addEventListener( "complete" , createjs.proxy(getRandomSong, this));
-
+	soundInstance.volume = volume;
 	// start the tick and point it at the window so we can do some work before updating the stage:
 	createjs.Ticker.addEventListener("tick", tick);
 	createjs.Ticker.setInterval(TICK_FREQ);
@@ -131,6 +133,31 @@ $( "#searchIn" ).keypress(function()
 	});
 });
 
+function changeVolume( volume )
+{
+	soundInstance.volume = volume / 100;
+	this.volume = volume / 100;
+}
+
+$( "#pull" ).keypress(function( event )
+{
+	if( event.which == 13)
+	{
+		$( "#pullResults" ).html( "Downloading songs; please wait... In fact you should be able to search for some songs as it loads :) " );
+		event.preventDefault();
+		var text = $(this).val();
+		$.ajax(
+		{
+			url : "/pull/",
+			type : "POST",
+			data : { url : text }
+		}).done( function( data )
+		{
+			$( "#pullResults" ).html( data );
+		});
+	}
+});
+
 
 function getRandomSong()
 {
@@ -189,6 +216,7 @@ $( document ).ready( function()
         if( src == "" )
         {
 	    ajaxGetSong();
+	    soundInstance.volume = 0.5;
         }
     }, 500 );
 });

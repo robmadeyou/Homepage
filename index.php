@@ -6,18 +6,31 @@ print '<html>
 		<script type="text/javascript" src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="static/style.css">
+		<title id="title">Welcome</title>
+		<link rel="shortcut icon" href="http://pic1.icoico.net/projecticons/1336655210_Emoticon.ico"/>
 	</head>
 	<body>
 		<div id="holder">
-			<div align="center">
-				<p id="songTitle"></p>
+			<div id="titleBar">
+				<p id="songTitle"></p> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
 			</div>
 			<div id="bars">
 				<canvas id="barCanvas" height="1000"></canvas>
 			</div>
-			<img id="imgLocation" src="">
-			<input type="text" id="searchIn">
-			<div id="search">
+			<div id="interactive">	
+				<div id="imgLocation" class="box" >
+					<img id="img" src="">
+				</div>
+				<div id="searchLocation" class="box" >
+					<input type="text" id="searchIn" placeholder="search" >
+					<div id="search">
+					</div>
+				</div>
+				<div id="downloadLocation" class="box">
+					<input type="text" id="pull" placeholder="url to pull; press enter!">
+					<div id="pullResults">
+					</div>
+				</div>
 			</div>
 		</div>
 	</body>

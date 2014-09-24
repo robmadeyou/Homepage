@@ -11,3 +11,68 @@ body
     color: white;
     font-family: "Courier New";
 }
+
+#songTitle
+{
+   float: left;
+   margin-left: 50px;
+}
+
+#volume
+{
+   float: right;
+   margin-right: 50px;
+}
+
+#interactive
+{
+	width: 100%;
+	margin: 0px;
+	padding 0px;
+}
+
+#search
+{
+	height: 450px;
+	overflow-y: scroll;
+}
+
+.box
+{
+	width: 32%;
+	float: left;
+	border-color: gray;
+	border-style: dashed;
+	border-width: 3px;
+	border-radius: 20px;
+}
+
+#pullResults
+{
+	color:white;
+	height: 450px;
+	overflow-y: scroll;
+}
+
+a:link {
+    color: white;
+    text-decoration: underline;
+}
+
+/* visited link */
+a:visited {
+    color: white;
+    text-decoration: underline;
+}
+
+/* mouse over link */
+a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* selected link */
+a:active {
+    color: white;
+    text-decoration: underline;
+}
