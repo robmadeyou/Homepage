@@ -39,12 +39,12 @@ print '<html>
 ?>
 	<?php
 		$link = $_REQUEST;
-		if( $_REQUEST[ "a" ] )
+		if( isset( $_REQUEST[ "a" ] ) )
 		{
 			print '<script> ajaxGetSong( ' . $_REQUEST[ "a" ] . ' ); </script>';
 		}
-print '</html>';
-$file = fopen( (new DateTime)->format( "Y-m-d" ) . "", "a" );
-fwrite( $file, $_SERVER['REMOTE_ADDR'] . ' - ' . (new DateTime)->format( "H-i-s" ) . "\n");
-fclose($file);
+		print '</html>';
+		$file = fopen( (new DateTime)->format( "Y-m-d" ) . "", "a" );
+		fwrite( $file, $_SERVER[ 'REMOTE_ADDR' ] . ' - ' . ( new DateTime )->format( "H-i-s" ) . "\n");
+		fclose( $file );
 ?>

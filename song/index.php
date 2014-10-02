@@ -1,8 +1,9 @@
 <?php
 	$songName = "";
+	$postData = new stdClass();
 	$postData->Song = "";
 	$postData->ID = 0;
-	if( $_POST[ "a" ] )
+	if( isset( $_POST[ "a" ] ) )
 	{
 		$dir = scandir('../music');
 		$songs = [];
@@ -28,7 +29,7 @@
 		}
 		print json_encode( $postData );
 	}
-	else if( $_POST[ "songList" ] )
+	else if( isset( $_POST[ "songList" ] ) )
 	{
 		$dir = scandir('../music');
 		$songs = [];
@@ -41,7 +42,7 @@
 		}
 		print json_encode($songs);
 	}
-	else if( $_POST[ "search" ] )
+	else if( isset( $_POST[ "search" ] ) )
 	{
 		$query = $_POST[ "search" ];
 
@@ -60,7 +61,7 @@
                 {
                         if( stristr( $songs[ $i ], $query ))
 			{
-				$song = null;
+				$song = new stdClass();
 				$song->Song = $songs[ $i ];
 				$song->ID = $i;
                                 $filtered[] = $song;
@@ -82,7 +83,7 @@
 		return $needle === "" || substr($haystack, -strlen($needle)) === $needle;
 	}
 	$me = "";
-	if( $_GET[ "u" ] )
+	if( isset( $_GET[ "u" ] ) )
 	{
 		$me = "me";
 	}
