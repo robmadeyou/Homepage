@@ -7,7 +7,7 @@ print '<html>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="static/style.css">
 		<title id="title">Welcome</title>
-		<link rel="shortcut icon" href="http://pic1.icoico.net/projecticons/1336655210_Emoticon.ico"/>
+		<link rel="shortcut icon" href="http://www.localfoodmap.net/images/icons/banana.ico"/>
 	</head>
 	<body>
 		<div id="holder">
