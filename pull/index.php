@@ -1,5 +1,5 @@
 <?php
-require_once( '..\mysql\Mysql.php' );
+require_once( '../mysql\Mysql.php' );
 	$errors = "";
 	$customPrefix = "";
 	$tags = "";
