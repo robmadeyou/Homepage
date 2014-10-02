@@ -6,7 +6,7 @@ class Mysql {
 
 	function __construct()
 	{
-		$ini = parse_ini_file( "site.ini" );
+		$ini = parse_ini_file( "../site.ini" );
 		if( $ini )
 		{
 			$this->mysqli = mysqli_connect( $ini[ "MysqlHost" ], $ini[ "MysqlUser" ], $ini[ "MysqlPassword" ], $ini[ "MysqlDatabase" ] );

@@ -1,5 +1,5 @@
 <?php
-
+require_once( '..\mysql\Mysql.php' );
 	$errors = "";
 	$customPrefix = "";
 	$tags = "";
@@ -39,7 +39,7 @@
 	if( $errors )
 	{
 		print nl2br( $errors );
-		return;
+		//return;
 	}
 
 	$songList = [];
