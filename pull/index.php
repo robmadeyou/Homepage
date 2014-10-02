@@ -39,18 +39,20 @@ require_once( '..\mysql\Mysql.php' );
 	if( $errors )
 	{
 		print nl2br( $errors );
-		//return;
+		return;
 	}
 
 	$songList = [];
 	$mysql = new Mysql();
 
-	$_POST[ "url" ] = str_replace( ";", "", $_POST[ "url"] );
-	$output = shell_exec( "cd ..; cd tmp/; youtube-dl -x --audio-quality 0 -i --add-metadata --write-thumbnail --prefer-avconv -o '%(id)s |!| %(uploader)s |!| %(title)s.%(ext)s' " . $_POST[ "url" ] );
+	$url = str_replace( ";", "", $url );
+	$output = shell_exec( "cd ..; cd tmp/; youtube-dl -x --audio-quality 0 -i --add-metadata --write-thumbnail --prefer-avconv -o '%(id)s |!| %(uploader)s |!| %(title)s.%(ext)s' " . $url );
 
 	$directory = scandir( "../tmp/" );
 	foreach( $directory as $item )
 	{
-		$mysql->Execute( "INSERT INTO tblSong (name) VALUES ( '$item' )" );
+		$mysql->InsertSong( ["name"], [ mysqli_real_escape_string( $mysql->GetMysqli(), $item ) ] );
+		print nl2br( mysqli_error( $mysql->GetMysqli() ) );
 	}
+	$mysql->Close();
 ?>
