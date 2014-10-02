@@ -46,13 +46,39 @@ require_once( '../mysql/Mysql.php' );
 	$mysql = new Mysql();
 
 	$url = str_replace( ";", "", $url );
-	$output = shell_exec( "cd ..; cd tmp/; youtube-dl -x --audio-quality 0 -i --add-metadata --write-thumbnail --prefer-avconv -o '%(id)s |!| %(uploader)s |!| %(title)s.%(ext)s' " . $url );
+	$output = shell_exec( "cd ../tmp/; youtube-dl -x --audio-quality 0 -i --add-metadata --write-thumbnail --prefer-avconv -o '%(id)s |!| %(uploader)s |!| %(title)s.%(ext)s' " . $url );
 
 	$directory = scandir( "../tmp/" );
 	foreach( $directory as $item )
 	{
-		$mysql->InsertSong( ["name"], [ mysqli_real_escape_string( $mysql->GetMysqli(), $item ) ] );
-		print nl2br( mysqli_error( $mysql->GetMysqli() ) );
+		if( $item != '.' && $item != '..' )
+		{
+			$info = pathinfo( $item );
+			if( $info[ "extension" ] == "mp3" || $info[ "extension" ] == "m4a" )
+			{
+				$songExploded = explode( " !|! ", $item );
+				$songUrl = $songExploded[0];
+				$uploader = $songExploded[1];
+
+				$mysql->InsertSong(
+					[
+						"url",
+						"name",
+						"genre",
+						"custom_name",
+						"ip",
+						"uploader",
+					],
+					[
+						mysqli_real_escape_string( $mysql->GetMysqli(), $url ),
+						mysqli_real_escape_string( $mysql->GetMysqli(), $item ),
+						mysqli_real_escape_string( $mysql->GetMysqli(), $tags ),
+						mysqli_real_escape_string( $mysql->GetMysqli(), $customPrefix ),
+						mysqli_real_escape_string( $mysql->GetMysqli(), $_SERVER['REMOTE_ADDR'] ),
+						mysqli_real_escape_string( $mysql->GetMysqli(), $uploader ),
+					]);
+			}
+		}
 	}
 	$mysql->Close();
 ?>

@@ -1,4 +1,5 @@
-MysqlDatabase =
-MysqlUser =
-MysqlPassword =
-MysqlHost =
+MysqlDatabase = ''
+MysqlUser = ''
+MysqlPassword = ''
+MysqlHost = ''
+Storage = ''
