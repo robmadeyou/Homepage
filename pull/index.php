@@ -43,8 +43,14 @@
 	}
 
 	$songList = [];
+	$mysql = new Mysql();
 
 	$_POST[ "url" ] = str_replace( ";", "", $_POST[ "url"] );
-	$output = shell_exec( "cd ..; cd music/; youtube-dl -x --audio-quality 0 -i --add-metadata --write-thumbnail --prefer-avconv -o '%(id)s |!| %(uploader)s |!| %(title)s.%(ext)s' " . $_POST[ "url" ] );
-	print $output;
+	$output = shell_exec( "cd ..; cd tmp/; youtube-dl -x --audio-quality 0 -i --add-metadata --write-thumbnail --prefer-avconv -o '%(id)s |!| %(uploader)s |!| %(title)s.%(ext)s' " . $_POST[ "url" ] );
+
+	$directory = scandir( "../tmp/" );
+	foreach( $directory as $item )
+	{
+		$mysql->Execute( "INSERT INTO tblSong (name) VALUES ( '$item' )" );
+	}
 ?>
