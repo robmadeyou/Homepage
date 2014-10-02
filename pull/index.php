@@ -46,4 +46,5 @@
 
 	$_POST[ "url" ] = str_replace( ";", "", $_POST[ "url"] );
 	$output = shell_exec( "cd ..; cd music/; youtube-dl -x --audio-quality 0 -i --add-metadata --write-thumbnail --prefer-avconv -o '%(url)s |!|  %(uploader)s |!| %(title)s |!| %(ext)s' " . $_POST[ "url" ] );
+	print $output;
 ?>
