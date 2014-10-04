@@ -5,6 +5,7 @@ require_once( '../mysql/Mysql.php' );
 	$tags = "";
 	$notes = "";
 	$url = "";
+	$usePrefix = false;
 	if( isset( $_POST ) )
 	{
 		if( !isset( $_POST[ "url" ] ) )
@@ -34,6 +35,11 @@ require_once( '../mysql/Mysql.php' );
 		{
 			$customPrefix = $_POST[ "prefix" ];
 		}
+
+		if( isset( $_POST[ "usePrefix" ] ) )
+		{
+			$usePrefix = $_POST[ "usePrefix" ];
+		}
 	}
 
 	if( $errors )
@@ -61,6 +67,16 @@ require_once( '../mysql/Mysql.php' );
                 $image = str_replace( $info[ "extension" ], "jpg", $songName );
 				$songUrl = $songExploded[ 0 ];
 				$uploader = $songExploded[ 1 ];
+				if( $customPrefix != "" )
+				{
+					if( $usePrefix )
+					{
+						if( strpos( $songName, $customPrefix ) ===  false )
+						{
+							$customPrefix .= " - " . $songName;
+						}
+					}
+				}
 
 				$mysql->InsertSong(
 					[

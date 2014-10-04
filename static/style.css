@@ -128,7 +128,7 @@ a:active {
 	min-height: 400px;
 }
 
-#innerPullForm div input
+#innerPullForm div .textbox
 {
 	width: 100%;
 }

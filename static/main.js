@@ -140,6 +140,7 @@ $( "#finalizePull" ).click(function( event )
 	var tags = $( "#pullTags" ).val();
 	var prefix = $( "#pullPrefix" ).val();
 	var notes = $( "#pullNotes" ).val();
+	var usePrefix = $( "#pullSmartTitle" ).is( ":checked" );
 
 	if( url == "" )
 	{
@@ -154,7 +155,8 @@ $( "#finalizePull" ).click(function( event )
 		data : { url : url,
 				 tags : tags,
 				 prefix : prefix,
-				 notes : notes }
+				 notes : notes,
+				 usePrefix : usePrefix }
 	}).done( function( data )
 	{
 		alert( data );

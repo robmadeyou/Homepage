@@ -15,15 +15,16 @@ print '<html>
 				<a href="#" id="close"><img src="static/images/close.png" width="32" height="32" ></a>
 				<div id="innerPullForm">
 					<div id="left">
-						Insert URL<br>
-						<input type="text" id="pullUrl" placeholder="This can be Youtube/Soundcloud playlist; single video or even an artist!"><br><br>
-						Custom Name?<i>(Leave blank if none)</i><br>
-						<input type="text" id="pullPrefix" placeholder="Custom name will be used to identify the song"><br><br>
-						Genres/Tags<br>
+						<b>Insert URL</b><br>
+						<input type="text" id="pullUrl" class="textbox" placeholder="This can be Youtube/Soundcloud playlist; single video or even an artist!"><br><br>
+						<b>Enable Smart Title </b><input title="This will put the custom name as the start of every song if the custom name isn\'t already added to the song name" type="checkbox" id="pullSmartTitle"><br><br>
+						<b>Custom Name?</b><i>(Leave blank if none)</i><br>
+						<input type="text" id="pullPrefix" class="textbox" placeholder="Custom name will be used to identify the song"><br><br>
+						<b>Genres/Tags</b><br>
 						<textarea id="pullTags" placeholder="Enter the tags you would like to add to songs from the URL; you will be able to search by them later on!"></textarea>
 					</div>
 					<div id="right">
-						Include Notes?<i>(Little self promotion is ok here :))</i><br>
+						<b>Include Notes?</b><i>(Little self promotion is ok here :))</i><br>
 						<textarea id="pullNotes" placeholder="Yo yo yo; notes are cool!"></textarea>
 					</div>
 				</div>
