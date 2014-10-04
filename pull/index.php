@@ -63,8 +63,7 @@ require_once( '../mysql/Mysql.php' );
 			if( $info[ "extension" ] == "mp3" || $info[ "extension" ] == "m4a" )
 			{
 				$songExploded = explode( " !i! ", $item );
-                $songName = $songExploded[ 2 ];
-                $image = str_replace( $info[ "extension" ], "jpg", $songName );
+				$songName = $songExploded[ 2 ];
 				$songUrl = $songExploded[ 0 ];
 				$uploader = $songExploded[ 1 ];
 				if( $customPrefix != "" )
@@ -78,6 +77,7 @@ require_once( '../mysql/Mysql.php' );
 						}
 					}
 				}
+				$image = str_replace( $info[ "extension" ], "jpg", $songName );
 
 				$mysql->InsertSong(
 					[
@@ -87,8 +87,8 @@ require_once( '../mysql/Mysql.php' );
 						"custom_name",
 						"ip",
 						"uploader",
-                        "notes",
-                        "image"
+						"notes",
+						"image"
 					],
 					[
 						mysqli_real_escape_string( $mysql->GetMysqli(), $url ),
@@ -97,11 +97,11 @@ require_once( '../mysql/Mysql.php' );
 						mysqli_real_escape_string( $mysql->GetMysqli(), $customPrefix ),
 						mysqli_real_escape_string( $mysql->GetMysqli(), $_SERVER['REMOTE_ADDR'] ),
 						mysqli_real_escape_string( $mysql->GetMysqli(), $uploader ),
-                        mysqli_real_escape_string( $mysql->GetMysqli(), $notes ),
-                        mysqli_real_escape_string( $mysql->GetMysqli(), $image )
+						mysqli_real_escape_string( $mysql->GetMysqli(), $notes ),
+						mysqli_real_escape_string( $mysql->GetMysqli(), $image )
 					]);
-                rename( '../tmp/' . $item, '../music/' . $songName );
-                rename( '../tmp/' . str_replace( $info[ "extension" ], "jpg", $item ), '../music/' . $image );
+				rename( '../tmp/' . $item, '../music/' . $songName );
+				rename( '../tmp/' . str_replace( $info[ "extension" ], "jpg", $item ), '../music/' . $image );
 			}
 		}
 	}
