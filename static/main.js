@@ -34,12 +34,6 @@ function init( song ) {
 		document.getElementById("header").style.display = "none";
 	}
 
-    	$( '#songTitle' ).html( '<a href="/?a=' + id + '">' + src.replace( ".m4a", "" ) + '</a>' );
-	$( '#songTitle' ).html( '<a href="/?a=' + id + '">' + src.replace( ".mp3", "" ) + '</a>' );
-	$( '#img' ).attr( "src", assetsPath + src.replace( ".m4a", ".jpg" ) );
-	$( '#img' ).attr( "src", assetsPath + src.replace( ".mp3", ".jpg" ) );
-	$( '#title').html( src );
-
 	// Web Audio only demo, so we register just the WebAudioPlugin and if that fails, display fail message
 	if (!createjs.Sound.registerPlugins([createjs.WebAudioPlugin])) {
 		document.getElementById("error").style.display = "block";
@@ -122,6 +116,7 @@ $( "#searchIn" ).keypress(function()
 		data : { search : text }
 	}).done(function( data )
 	{
+		//TODO
 		data = JSON.parse( data );
 		var search = $( "#search" );
 		search.html( "" );
@@ -139,23 +134,32 @@ function changeVolume( volume )
 	this.volume = volume / 100;
 }
 
-$( "#pull" ).keypress(function( event )
+$( "#finalizePull" ).click(function( event )
 {
-	if( event.which == 13)
+	var url = $( "#pullUrl" ).val();
+	var tags = $( "#pullTags" ).val();
+	var prefix = $( "#pullPrefix" ).val();
+	var notes = $( "#pullNotes" ).val();
+
+	if( url == "" )
 	{
-		$( "#pullResults" ).html( "Downloading songs; please wait... In fact you should be able to search for some songs as it loads :) " );
-		event.preventDefault();
-		var text = $(this).val();
-		$.ajax(
-		{
-			url : "/pull/",
-			type : "POST",
-			data : { url : text }
-		}).done( function( data )
-		{
-			$( "#pullResults" ).html( data );
-		});
+		alert( "Sorry; URL was left empty" );
+		return;
 	}
+	event.preventDefault();
+	$.ajax(
+	{
+		url : "/pull/",
+		type : "POST",
+		data : { url : url,
+				 tags : tags,
+				 prefix : prefix,
+				 notes : notes }
+	}).done( function( data )
+	{
+		alert( data );
+		$( "#overlay" ).fadeOut();
+	});
 });
 
 
@@ -191,25 +195,6 @@ function ajaxGetSong( song )
 			});
 }
 
-/**
- * Returns an array of all the songs currently held on the server.
- * This list updates all the time, as songs are sorted alphabetically they won't
- * always be in the same index as they were.
- */
-function getSongList( )
-{
-    $.ajax(
-        {
-            url : "/song/",
-            type : "POST",
-            data : { songList : "yay"}
-        }
-    ).done( function( data )
-        {
-            return data;
-        });
-}
-
 $( document ).ready( function()
 {
     setTimeout( function(){
@@ -219,4 +204,18 @@ $( document ).ready( function()
 	    soundInstance.volume = 0.5;
         }
     }, 500 );
+
+	$( "#pull" ).click( function( event )
+	{
+		$( "#overlay" ).fadeIn();
+		event.preventDefault();
+		return false;
+	});
+
+	$( "#close" ).click( function ( event )
+	{
+		$( "#overlay" ).fadeOut();
+		event.preventDefault();
+		return false;
+	});
 });

@@ -12,11 +12,19 @@ print '<html>
 	<body>
 		<div id="overlay">
 			<div id="outerPullForm">
+				<a href="#" id="close"><img src="static/images/close.png" width="32" height="32" ></a>
 				<div id="innerPullForm">
 					<div id="left">
-
+						Insert URL<br>
+						<input type="text" id="pullUrl" placeholder="This can be Youtube/Soundcloud playlist; single video or even an artist!"><br><br>
+						Custom Name?<i>(Leave blank if none)</i><br>
+						<input type="text" id="pullPrefix" placeholder="Custom name will be used to identify the song"><br><br>
+						Genres/Tags<br>
+						<textarea id="pullTags" placeholder="Enter the tags you would like to add to songs from the URL; you will be able to search by them later on!"></textarea>
 					</div>
 					<div id="right">
+						Include Notes?<i>(Little self promotion is ok here :))</i><br>
+						<textarea id="pullNotes" placeholder="Yo yo yo; notes are cool!"></textarea>
 					</div>
 				</div>
 				<button type="button" id="finalizePull">Upload!</button>
