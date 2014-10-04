@@ -70,10 +70,9 @@ require_once( '../mysql/Mysql.php' );
 				{
 					if( $usePrefix )
 					{
-						if( strpos( $songName, $customPrefix ) ===  false )
+						if( strpos( strtolower( $songName ), strtolower( $customPrefix ) ) ===  false )
 						{
 							$songName = $customPrefix . " - " . $songName;
-							print "name made";
 						}
 					}
 				}
