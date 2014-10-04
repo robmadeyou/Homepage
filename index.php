@@ -10,6 +10,18 @@ print '<html>
 		<link rel="shortcut icon" href="http://www.localfoodmap.net/images/icons/banana.ico"/>
 	</head>
 	<body>
+		<div id="overlay">
+			<div id="outerPullForm">
+				<div id="innerPullForm">
+					<div id="left">
+
+					</div>
+					<div id="right">
+					</div>
+				</div>
+				<button type="button" id="finalizePull">Upload!</button>
+			</div>
+		</div>
 		<div id="holder">
 			<div id="titleBar">
 				<p id="songTitle"></p> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
@@ -27,7 +39,7 @@ print '<html>
 					</div>
 				</div>
 				<div id="downloadLocation" class="box">
-					<input type="text" id="pull" placeholder="url to pull; press enter!">
+					<button type="submit" id="pull">Click me to download songs to the server</button>
 					<div id="pullResults">
 					</div>
 				</div>

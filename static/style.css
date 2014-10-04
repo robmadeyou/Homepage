@@ -28,7 +28,7 @@ body
 {
 	width: 100%;
 	margin: 0px;
-	padding 0px;
+	padding: 0px;
 }
 
 #search
@@ -75,4 +75,79 @@ a:hover {
 a:active {
     color: white;
     text-decoration: underline;
+}
+
+#overlay
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: gray;
+	opacity: 0.1;
+	z-index:9999;
+}
+
+
+#left
+{
+	border: solid 4px;
+	border-left-width: 2px;
+	height: 100%;
+	width: 32%;
+	float: left;
+
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-radius-topleft: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+}
+
+#right
+{
+	border: solid 4px;
+	border-right-width: 2px;
+	height: 100%;
+	width: 67%;
+	float: left;
+
+	-webkit-border-top-right-radius: 20px;
+	-webkit-border-bottom-right-radius: 20px;
+	-moz-border-radius-topright: 20px;
+	-moz-border-radius-bottomright: 20px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+}
+
+#innerPullForm
+{
+	border-radius: 10px;
+	position: relative;
+}
+
+#outerPullForm
+{
+	background-color: whitesmoke;
+
+	margin-top: 100px;
+	margin-left: 200px;
+	margin-right: 200px;
+	height: 40px;
+	border-radius: 5px;
+	padding-bottom: 40px;
+	padding-top: 40px;
+	padding-left: 40px;
+	padding-right: 40px;
+}
+
+#pullWrapper
+{
+}
+
+#finalizePull
+{
+	margin-left: 40%;
 }
