@@ -73,7 +73,8 @@ require_once( '../mysql/Mysql.php' );
 					{
 						if( strpos( $songName, $customPrefix ) ===  false )
 						{
-							$customPrefix .= " - " . $songName;
+							$songName = $customPrefix . " - " . $songName;
+							print "name made";
 						}
 					}
 				}
@@ -99,8 +100,8 @@ require_once( '../mysql/Mysql.php' );
                         mysqli_real_escape_string( $mysql->GetMysqli(), $notes ),
                         mysqli_real_escape_string( $mysql->GetMysqli(), $image )
 					]);
-                rename( '../tmp/' . $item, $songName );
-                rename( '../tmp/' . str_replace( $info[ "extension" ], "jpg", $item ), $image );
+                rename( '../tmp/' . $item, '../music' . $songName );
+                rename( '../tmp/' . str_replace( $info[ "extension" ], "jpg", $item ), '../music/' . $image );
 			}
 		}
 	}
