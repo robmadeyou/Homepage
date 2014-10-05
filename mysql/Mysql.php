@@ -1,5 +1,6 @@
 <?php
 
+require_once( '../song/Song.php' );
 class Mysql {
 
 	private $mysqli;
@@ -51,5 +52,21 @@ class Mysql {
 	public function Close( )
 	{
 		mysqli_close( $this->mysqli );
+	}
+
+	/**
+	 * @param string $filters MUST BEGIN WITH WHERE
+	 *
+	 * @return array|null
+	 */
+	public function GetRandomSong( $filters = "" )
+	{
+		$song = null;
+		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . $filters . " ORDER BY RAND() LIMIT 1" ) );
+		if( $query )
+		{
+			$song = new Song( $query[ "id" ], $query[ "url" ], $query[ "custom_name" ], $query[ "genre" ], $query[ "notes" ], $query[ "name" ], $query[ "image" ] );
+		}
+		return $song;
 	}
 }
