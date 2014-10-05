@@ -62,7 +62,23 @@ class Mysql {
 	public function GetRandomSong( $filters = "" )
 	{
 		$song = null;
-		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . $filters . " ORDER BY RAND() LIMIT 1" ) );
+		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . mysqli_real_escape_string( $this->mysqli, $filters ) . " ORDER BY RAND() LIMIT 1" ) );
+		if( $query )
+		{
+			$song = new Song( $query[ "id" ], $query[ "url" ], $query[ "custom_name" ], $query[ "genre" ], $query[ "notes" ], $query[ "name" ], $query[ "image" ] );
+		}
+		return $song;
+	}
+
+	/**
+	 * @param $id
+	 *
+	 * @return null|Song
+	 */
+	public function GetSongFromID( $id )
+	{
+		$song = null;
+		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblSong WHERE id = " . mysqli_real_escape_string( $this->mysqli, $id ) ));
 		if( $query )
 		{
 			$song = new Song( $query[ "id" ], $query[ "url" ], $query[ "custom_name" ], $query[ "genre" ], $query[ "notes" ], $query[ "name" ], $query[ "image" ] );
