@@ -1,6 +1,6 @@
 var FFTSIZE = 1024;      // number of samples for the analyser node FFT, min 32
 var TICK_FREQ = 20;     // how often to run the tick function, in milliseconds
-var id = 0;
+var image = 0;
 var assetsPath = "music/"; // Create a single item to load.
 var src = "";  // set up our source
 var soundInstance;      // the sound instance we create
@@ -17,6 +17,9 @@ canvas.height = canvas.offsetHeight;
 var self = this;
 
 function init( song ) {
+
+	$( "#img" ).attr( "src", "/music/" + image );
+	$( "#songTitle" ).html( song );
 
 	if( song != "" )
 	{
@@ -70,9 +73,10 @@ function startPlayback(evt) {
 	createjs.Ticker.setInterval(TICK_FREQ);
 }
 
-function next( song, songID )
+function next( song, image )
 {
-	id = songID;
+	this.image = image;
+
 	if( src != "" )
 	{
 		createjs.Ticker.removeEventListener( "tick", tick );
@@ -185,15 +189,14 @@ function ajaxGetSong( song )
 
 		$.ajax(
 			{
-				url : "/song/",
-				type : "POST",
-				data : { a : song}
+				url : "/get/",
+				type : "POST"
 			}
 		).done(function( data )
 			{
 				data = JSON.parse( data );
 				console.log( data );
-				self.next( data.Song, data.ID );
+				self.next( data.name, data.image );
 			});
 }
 
