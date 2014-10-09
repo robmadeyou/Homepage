@@ -23,14 +23,14 @@ function init( song ) {
 
 	if( song != "" )
 	{
-		if( assetsPath + src == assetsPath + song)
+		if( assetsPath + src == assetsPath + song.name)
 		{
 			handleLoad(this);
 			return;
 		}
 		else
 		{
-			src = song;
+			src = song.name;
 		}
 	}
 	if (window.top != window) {
@@ -45,7 +45,7 @@ function init( song ) {
 
 	// create a new stage and point it at our canvas:
 	createjs.Sound.addEventListener("fileload", createjs.proxy(handleLoad,this)); // add an event listener for when load is completed
-	createjs.Sound.registerSound(assetsPath + src);  // register sound, which preloads by default
+	createjs.Sound.registerSound(assetsPath + src.name);  // register sound, which preloads by default
 
 }
 
