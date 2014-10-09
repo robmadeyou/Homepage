@@ -8,13 +8,27 @@ require_once( '../song/Song.php' );
 	}
 	else
 	{
-		if( isset( $_POST[ "filter" ] ) )
+		if( isset( $_POST[ "list" ] ) )
 		{
-			$song = $mysql->GetRandomSong( $_POST[ "filter" ] );
+			if( isset( $_POST[ "filter" ] ) )
+			{
+				$song = $mysql->GetSongList( $_POST[ "filter" ] );
+			}
+			else
+			{
+				$song = $mysql->GetSongList();
+			}
 		}
 		else
 		{
-			$song = $mysql->GetRandomSong();
+			if( isset( $_POST[ "filter" ] ) )
+			{
+				$song = $mysql->GetRandomSong( $_POST[ "filter" ] );
+			}
+			else
+			{
+				$song = $mysql->GetRandomSong();
+			}
 		}
 	}
 	print json_encode( $song );

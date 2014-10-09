@@ -65,7 +65,4 @@ print '<html>
 			print '<script> ajaxGetSong( ' . $_REQUEST[ "a" ] . ' ); </script>';
 		}
 		print '</html>';
-		$file = fopen( (new DateTime)->format( "Y-m-d" ) . "", "a" );
-		fwrite( $file, $_SERVER[ 'REMOTE_ADDR' ] . ' - ' . ( new DateTime )->format( "H-i-s" ) . "\n");
-		fclose( $file );
 ?>

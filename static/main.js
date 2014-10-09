@@ -19,7 +19,7 @@ var self = this;
 function init( song ) {
 
 	$( "#img" ).attr( "src", "/music/" + image );
-	$( "#songTitle" ).html( song );
+	$( "#songTitle" ).html( song.image );
 
 	if( song != "" )
 	{
@@ -115,20 +115,22 @@ $( "#searchIn" ).keypress(function()
 	var text = $(this).val();
 	$.ajax(
 	{
-		url : "/song/",
+		url : "/get/",
 		type : "POST",
-		data : { search : text }
+		data : { filter : text, list : true }
 	}).done(function( data )
 	{
-		//TODO
 		data = JSON.parse( data );
 		var search = $( "#search" );
 		search.html( "" );
 		for( var i = 0; i < data.length; i++)
 		{
-			search.append( '<a href="/?a=' + data[i].ID + '">' + data[i].Song + '</a><br>');
+			search.append( '<p class="songLink" song="' + data[ i ].id + '" >' + data[ i ].name + '</p>' );
 		}
-		console.log( data );
+		$( ".songLink" ).click( function()
+		{
+			ajaxGetSong( $( this ).attr( "song" ) );
+		});
 	});
 });
 
@@ -171,7 +173,17 @@ $( "#finalizePull" ).click(function( event )
 
 function getRandomSong()
 {
-	ajaxGetSong( null );
+	$.ajax(
+		{
+			url : "/get/",
+			type : "POST"
+		}
+	).done(function( data )
+		{
+			data = JSON.parse( data );
+			console.log( data );
+			self.next( data.name, data.image );
+		});
 }
 
 /**
@@ -182,22 +194,18 @@ function getRandomSong()
  */
 function ajaxGetSong( song )
 {
-	if( song == null )
-	{
-		song = "rand";
-	}
-
-		$.ajax(
-			{
-				url : "/get/",
-				type : "POST"
-			}
-		).done(function( data )
-			{
-				data = JSON.parse( data );
-				console.log( data );
-				self.next( data.name, data.image );
-			});
+	$.ajax(
+		{
+			url : "/get/",
+			type : "POST",
+			data : { id : song }
+		}
+	).done(function( data )
+		{
+			data = JSON.parse( data );
+			console.log( data );
+			self.next( data );
+		});
 }
 
 $( document ).ready( function()

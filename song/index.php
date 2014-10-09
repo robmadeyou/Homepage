@@ -87,7 +87,4 @@
 	{
 		$me = "me";
 	}
-	$file = fopen( (new DateTime)->format( "Y-m-d" ) . "", "a" );
-	fwrite( $file, $_SERVER['REMOTE_ADDR'] . ' - ' . (new DateTime)->format( "H-i-s" ) . " = " . $songName . " : " . $me . "\n");
-	fclose($file);
 ?>
