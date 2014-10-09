@@ -185,5 +185,6 @@ h1
 .floatingImages
 {
 	float: left;
-	widows: auto;
+	width: 25%;
+	height: auto;
 }
