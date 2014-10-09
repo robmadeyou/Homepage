@@ -37,7 +37,6 @@
 		public function ParseFiltersToMySQL()
 		{
 			$builder = "WHERE";
-			//Parse title;
 			if( $this->title )
 			{
 				$builder .= " name LIKE '%" . mysqli_real_escape_string( $this->mysql, str_replace( "@", "", $this->title ) ) . "%'";

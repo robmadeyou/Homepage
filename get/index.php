@@ -15,7 +15,6 @@ require_once( 'Filter/Filter.php' );
 			if( isset( $_POST[ "filter" ] ) )
 			{
 				$filter = new Filter( $mysql->GetMysqli(), $_POST[ "filter" ] );
-				print $filter->ParseFiltersToMySQL();
 				$song = $mysql->GetSongList( $filter->ParseFiltersToMySQL() );
 			}
 			else
@@ -28,7 +27,6 @@ require_once( 'Filter/Filter.php' );
 			if( isset( $_POST[ "filter" ] ) )
 			{
 				$filter = new Filter( $mysql->GetMysqli(), $_POST[ "filter" ] );
-				print $filter->ParseFiltersToMySQL();
 				$song = $mysql->GetRandomSong( $filter->ParseFiltersToMySQL() );
 			}
 			else
