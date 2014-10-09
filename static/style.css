@@ -194,3 +194,8 @@ h1
 	width: inherit;
 	height: inherit;
 }
+
+#nextButton
+{
+	float: left;
+}
