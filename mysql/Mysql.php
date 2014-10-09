@@ -62,7 +62,7 @@ class Mysql {
 			$filter = "WHERE name like '%" . mysqli_real_escape_string( $this->mysqli, $filter ) ."%'";
 		}
 		$song = [];
-		$mysql = mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . $filter . " ORDER BY RAND() LIMIT 50" );
+		$mysql = mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . $filter . " ORDER BY RAND() LIMIT 500" );
 		while ( $query = mysqli_fetch_array( $mysql ) )
 		{
 			$song[] = $query;

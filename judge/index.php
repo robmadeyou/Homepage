@@ -19,7 +19,7 @@ require_once( '../song/Song.php' );
 				$mysql = new Mysql();
 				foreach( $mysql->GetSongList() as $song )
 				{
-					print '<a href="/?a='. $song[ "id" ] .'"><img class="floatingImages" src="' . $song[ "image" ] . '" /></a>';
+					print '<a href="/?a='. $song[ "id" ] .'"><img class="floatingImages" src="/music/' . $song[ "image" ] . '" /></a>';
 				}
 			?>
 		</body>
