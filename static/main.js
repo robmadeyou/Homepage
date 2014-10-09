@@ -9,6 +9,7 @@ var freqFloatData, freqByteData, timeByteData;  // arrays to retrieve data from 
 var canvas = document.getElementById( "barCanvas" );
 var ctx = canvas.getContext( "2d" );
 var volume = 1;
+var songList = [];
 canvas.style.width = "100%";
 canvas.style.height = "100%";
 canvas.width  = canvas.offsetWidth;
@@ -66,7 +67,7 @@ function handleLoad(evt) {
 
 function startPlayback(evt) {
 	soundInstance = createjs.Sound.play(assetsPath + src, {loop:0});
-	soundInstance.addEventListener( "complete" , createjs.proxy(getRandomSong, this));
+	soundInstance.addEventListener( "complete" , createjs.proxy(playNextSong, this));
 	soundInstance.volume = volume;
 	// start the tick and point it at the window so we can do some work before updating the stage:
 	createjs.Ticker.addEventListener("tick", tick);
@@ -123,6 +124,7 @@ $( "#searchIn" ).keypress(function()
 		data = JSON.parse( data );
 		var search = $( "#search" );
 		search.html( "" );
+		songList = data;
 		for( var i = 0; i < data.length; i++)
 		{
 			search.append( '<p class="songLink" song="' + data[ i ].id + '" >' + data[ i ].name + '</p>' );
@@ -184,6 +186,18 @@ function getRandomSong()
 			console.log( data );
 			self.next( data );
 		});
+}
+
+function playNextSong()
+{
+	if( songList.length != 0 )
+	{
+		self.next( songList[ parseInt( IntegerMath.random() * songList.length ) ] );
+	}
+	else
+	{
+		getRandomSong();
+	}
 }
 
 /**

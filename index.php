@@ -33,7 +33,7 @@ print '<html>
 		</div>
 		<div id="holder">
 			<div id="titleBar">
-				<p id="songTitle"></p> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
+				<p id="songTitle"></p><button type="button" onclick="playNextSong()" >Next song!</button> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
 			</div>
 			<div id="bars">
 				<canvas id="barCanvas" height="1000"></canvas>
