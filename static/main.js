@@ -192,7 +192,7 @@ function playNextSong()
 {
 	if( songList.length != 0 )
 	{
-		self.next( songList[ parseInt( IntegerMath.random() * songList.length ) ] );
+		self.next( songList[ parseInt( parseInt( Math.random() * songList.length ) ) ] );
 	}
 	else
 	{
