@@ -18,8 +18,8 @@ var self = this;
 
 function init( song ) {
 
-	$( "#img" ).attr( "src", "/music/" + image );
-	$( "#songTitle" ).html( song.image );
+	$( "#img" ).attr( "src", "/music/" + song.image );
+	$( "#songTitle" ).html( song.name );
 
 	if( song != "" )
 	{
@@ -45,7 +45,7 @@ function init( song ) {
 
 	// create a new stage and point it at our canvas:
 	createjs.Sound.addEventListener("fileload", createjs.proxy(handleLoad,this)); // add an event listener for when load is completed
-	createjs.Sound.registerSound(assetsPath + src.name);  // register sound, which preloads by default
+	createjs.Sound.registerSound(assetsPath + src );  // register sound, which preloads by default
 
 }
 
