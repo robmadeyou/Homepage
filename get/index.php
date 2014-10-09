@@ -1,6 +1,8 @@
 <?php
 require_once( '../mysql/Mysql.php' );
 require_once( '../song/Song.php' );
+require_once( 'Filter/Filter.php' );
+
 	$mysql = new Mysql();
 	if( isset( $_POST[ "id" ] ) )
 	{
@@ -12,7 +14,9 @@ require_once( '../song/Song.php' );
 		{
 			if( isset( $_POST[ "filter" ] ) )
 			{
-				$song = $mysql->GetSongList( $_POST[ "filter" ] );
+				$filter = new Filter( $mysql->GetMysqli(), $_POST[ "filter" ] );
+				print $filter->ParseFiltersToMySQL();
+				$song = $mysql->GetSongList( $filter->ParseFiltersToMySQL() );
 			}
 			else
 			{
@@ -23,7 +27,9 @@ require_once( '../song/Song.php' );
 		{
 			if( isset( $_POST[ "filter" ] ) )
 			{
-				$song = $mysql->GetRandomSong( $_POST[ "filter" ] );
+				$filter = new Filter( $mysql->GetMysqli(), $_POST[ "filter" ] );
+				print $filter->ParseFiltersToMySQL();
+				$song = $mysql->GetRandomSong( $filter->ParseFiltersToMySQL() );
 			}
 			else
 			{

@@ -56,13 +56,8 @@ class Mysql {
 
 	public function GetSongList( $filter = "" )
 	{
-		//Temp solution
-		if( $filter )
-		{
-			$filter = "WHERE name like '%" . mysqli_real_escape_string( $this->mysqli, $filter ) ."%'";
-		}
 		$song = [];
-		$mysql = mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . $filter . " ORDER BY RAND() LIMIT 500" );
+		$mysql = mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . $filter . " LIMIT 50" );
 		while ( $query = mysqli_fetch_array( $mysql ) )
 		{
 			$song[] = $query;
@@ -78,7 +73,7 @@ class Mysql {
 	public function GetRandomSong( $filters = "" )
 	{
 		$song = null;
-		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . mysqli_real_escape_string( $this->mysqli, $filters ) . " ORDER BY RAND() LIMIT 1" ) );
+		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblSong " . $filters . " ORDER BY RAND() LIMIT 1" ) );
 		if( $query )
 		{
 			$song = new Song( $query[ "id" ], $query[ "url" ], $query[ "custom_name" ], $query[ "genre" ], $query[ "notes" ], $query[ "name" ], $query[ "image" ] );

@@ -188,3 +188,9 @@ h1
 	width: 25%;
 	height: auto;
 }
+
+#img
+{
+	width: inherit;
+	height: inherit;
+}

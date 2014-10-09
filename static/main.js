@@ -182,7 +182,7 @@ function getRandomSong()
 		{
 			data = JSON.parse( data );
 			console.log( data );
-			self.next( data.name, data.image );
+			self.next( data );
 		});
 }
 
