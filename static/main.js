@@ -19,7 +19,7 @@ var self = this;
 
 function init( song ) {
 
-	$( "#img" ).attr( "src", "/music/" + song.image );
+	$( "#img" ).attr( "src", "music/" + song.image );
 	$( "#songTitle" ).html( song.name );
 
 	if( song != "" )
@@ -116,7 +116,7 @@ $( "#searchIn" ).keypress(function()
 	var text = $(this).val();
 	$.ajax(
 	{
-		url : "/get/",
+		url : "get/",
 		type : "POST",
 		data : { filter : text, list : true }
 	}).done(function( data )
@@ -158,7 +158,7 @@ $( "#finalizePull" ).click(function( event )
 	event.preventDefault();
 	$.ajax(
 	{
-		url : "/pull/",
+		url : "pull/",
 		type : "POST",
 		data : { url : url,
 				 tags : tags,
@@ -177,7 +177,7 @@ function getRandomSong()
 {
 	$.ajax(
 		{
-			url : "/get/",
+			url : "get/",
 			type : "POST"
 		}
 	).done(function( data )
@@ -210,7 +210,7 @@ function ajaxGetSong( song )
 {
 	$.ajax(
 		{
-			url : "/get/",
+			url : "get/",
 			type : "POST",
 			data : { id : song }
 		}
