@@ -5,5 +5,5 @@
 if( $_REQUEST[ "user" ] )
 {
 	$mysql = new Mysql();
-	$mysql->LogIn( $_REQUEST[ "user" ] );
+	$mysql->LogIn( "Something" );
 }
