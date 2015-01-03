@@ -100,6 +100,7 @@ class Mysql {
 	public function LogIn( $id )
 	{
 		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblUser WHERE UserName = $id LIMIT 1" ) );
+		print "Fetched query";
 		if( $query )
 		{
 			setcookie( "user", $id );
