@@ -5,6 +5,12 @@ body
     margin-right: 0;
 }
 
+#loggedInNotifier
+{
+	margin-right: 20px;
+	color: white;
+}
+
 #migi
 {
 	position: fixed;
