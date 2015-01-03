@@ -3,7 +3,12 @@ body
    background: #0d0d0d;
     margin-left: 0;
     margin-right: 0;
+}
 
+.login
+{
+	color:red;
+	cursor: pointer;
 }
 
 #songTitle

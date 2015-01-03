@@ -136,6 +136,21 @@ $( "#searchIn" ).keypress(function()
 	});
 });
 
+$( "login" ).click( function()
+{
+	var usr = prompt( "What's your username?" )
+	$.ajax(
+		{
+			url : "login/",
+			type : "POST",
+			data : { user : usr }
+		}
+	).done( function( response )
+		{
+			alert( response );
+		});
+});
+
 function changeVolume( volume )
 {
 	soundInstance.volume = volume / 100;

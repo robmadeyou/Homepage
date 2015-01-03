@@ -6,15 +6,6 @@ require_once( '../mysql/Mysql.php' );
 if( $_REQUEST[ "user" ] )
 {
 	$mysql = new Mysql();
-	$mysql->LogIn( "Something" );
+	$mysql->LogIn( $_REQUEST[ "user" ] );
 }
-
 ?>
-<html>
-	<head>
-
-	</head>
-	<body>
-		<p>Hello!</p>
-	</body>
-</html>
