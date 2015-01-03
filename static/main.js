@@ -136,7 +136,7 @@ $( "#searchIn" ).keypress(function()
 	});
 });
 
-$( "login" ).click( function()
+$( "#login" ).click( function()
 {
 	var usr = prompt( "What's your username?" )
 	$.ajax(
