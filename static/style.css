@@ -7,7 +7,8 @@ body
 
 #migi
 {
-	position: absolute;
+	position: fixed;
+	z-index: 99999;
 	bottom: 0;
 	right: 0;
 }
