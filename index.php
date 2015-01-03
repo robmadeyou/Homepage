@@ -16,7 +16,14 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 		<link rel="shortcut icon" href="http://www.localfoodmap.net/images/icons/banana.ico"/>
 	</head>
 	<body>
+	<?php
+		if( $loggedIn && $_COOKIE[ "user" ] == "Migi" )
+		{
+	?>
 		<img src="http://vignette4.wikia.nocookie.net/kiseijuu/images/0/0c/Migi.png/revision/latest/scale-to-width/300?cb=20141009194833" id="migi">
+	<?php
+		}
+	?>
 		<div id="overlay">
 			<div id="outerPullForm">
 				<a href="#" id="close"><img src="static/images/close.png" width="32" height="32" ></a>
