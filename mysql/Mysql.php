@@ -1,5 +1,5 @@
 <?php
-
+chdir( __DIR__ );
 require_once( '../song/Song.php' );
 class Mysql {
 
