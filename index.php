@@ -64,6 +64,7 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 			</div>
 		</div>
 		<footer>
+			<br>
 			<p>To NeverLost. Dear old friend!</p>
 		</footer>
 	</body>
