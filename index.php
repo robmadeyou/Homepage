@@ -1,6 +1,10 @@
 <?php
-
-print '<html>
+if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
+{
+	$loggedIn = true;
+}
+?>
+<html>
 	<head>
 		<script type="text/javascript" src="http://code.createjs.com/easeljs-0.7.1.min.js"></script>
 		<script type="text/javascript" src="http://code.createjs.com/soundjs-0.5.2.min.js"></script>
@@ -33,6 +37,9 @@ print '<html>
 		</div>
 		<div id="holder">
 			<div id="titleBar">
+				<?=
+					$loggedIn ? "You're logged in!" : "You're not logged in yet";
+				?>
 				<p id="songTitle"></p><button type="button" id="nextButton" onclick="playNextSong()" >Next song!</button> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
 			</div>
 			<div id="bars">
@@ -55,13 +62,11 @@ print '<html>
 			</div>
 		</div>
 		<footer>
-			To NeverLost. Dear old friend!
+			<p>To NeverLost. Dear old friend!</p>
 		</footer>
 	</body>
 	<script type="text/javascript" src="static/main.js"></script>
-	'
-?>
-	<?php
+<?php
 		$link = $_REQUEST;
 		if( isset( $_REQUEST[ "a" ] ) )
 		{
