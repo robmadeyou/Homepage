@@ -152,6 +152,14 @@ $( "#login" ).click( function()
 		});
 });
 
+$( "#logout" ).click( function()
+{
+	if( confirm( "Are you sure you want to log out?" ) )
+	{
+		setCookie( "user", "", 0 );
+	}
+});
+
 /*
  Thanks w3!
  */

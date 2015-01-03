@@ -49,7 +49,7 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 			<div id="titleBar">
 				<p>
 				<?=
-					$loggedIn ? "You're logged in!" : "You're not logged in yet <span id=\"login\">Click here to log in</span>";
+					$loggedIn ? "You're logged in! <span id=\"logout\">Logout</span>" : "You're not logged in yet <span id=\"login\">Log in</span>";
 				?>
 				</p>
 				<p id="songTitle"></p><button type="button" id="nextButton" onclick="playNextSong()" >Next song!</button> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">

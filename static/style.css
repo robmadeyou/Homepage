@@ -25,6 +25,12 @@ body
 	cursor: pointer;
 }
 
+#logout
+{
+	color:blue;
+	cursor: pointer;
+}
+
 #songTitle
 {
     color: white;
