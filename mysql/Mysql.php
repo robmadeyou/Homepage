@@ -111,4 +111,15 @@ class Mysql {
 		print "Fail";
 		return false;
 	}
+
+	public function DoesUserExist( $id )
+	{
+		$id = mysqli_real_escape_string( $this->mysqli, $id );
+		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblUser WHERE UserName = '$id' LIMIT 1" ) );
+		if( $query )
+		{
+			return true;
+		}
+		return false;
+	}
 }

@@ -1,7 +1,9 @@
 <?php
+require( "mysql/Mysql.php" );
 if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 {
-	$loggedIn = true;
+	$mysql = new Mysql();
+	$loggedIn = $mysql->DoesUserExist( $_COOKIE[ "user" ] );
 }
 ?>
 <html>
