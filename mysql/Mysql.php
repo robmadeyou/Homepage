@@ -102,9 +102,10 @@ class Mysql {
 		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblUser WHERE UserName = $id LIMIT 1" ) );
 		if( $query )
 		{
-			setcookie( "user", $id );
+			setcookie( "user", $id, time()+60*60*24*30 );
 			return true;
 		}
+		setcookie( "failed", "true", time()+60*60*24*30 );
 		return false;
 	}
 }
