@@ -101,6 +101,7 @@ class Mysql {
 	{
 		$id = mysqli_real_escape_string( $this->mysqli, $id );
 		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblUser WHERE UserName = '$id' LIMIT 1" ) );
+		var_dump( $query );
 		if( $query )
 		{
 			setcookie( "user", $id, time()+60*60*24*30 );
