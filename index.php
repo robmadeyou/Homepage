@@ -54,6 +54,9 @@ print '<html>
 				</div>
 			</div>
 		</div>
+		<footer>
+			To NeverLost. Dear old friend!
+		</footer>
 	</body>
 	<script type="text/javascript" src="static/main.js"></script>
 	'
