@@ -1,5 +1,5 @@
 <?php
-require( "mysql/Mysql.php" );
+require_once( "mysql/Mysql.php" );
 if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 {
 	$mysql = new Mysql();
