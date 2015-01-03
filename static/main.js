@@ -149,6 +149,7 @@ $( "#login" ).click( function()
 		{
 			alert( response );
 			setCookie( "user", usr, 60 );
+			location.reload();
 		});
 });
 
@@ -157,6 +158,7 @@ $( "#logout" ).click( function()
 	if( confirm( "Are you sure you want to log out?" ) )
 	{
 		setCookie( "user", "", 0 );
+		location.reload();
 	}
 });
 
