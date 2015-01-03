@@ -99,7 +99,14 @@ class Mysql {
 
 	public function LogIn( $id )
 	{
-		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblUser WHERE UserName = $id LIMIT 1" ) );
+		try
+		{
+			$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblUser WHERE UserName = $id LIMIT 1" ) );
+		}
+		catch( Exception $ex )
+		{
+			print $ex;
+		}
 		print "Fetched query";
 		if( $query )
 		{
