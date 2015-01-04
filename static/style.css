@@ -150,6 +150,7 @@ a:active {
 	margin-right: auto;
 	margin-left: auto;
 	width: 99%;
+	z-index: inherit;
 }
 
 #innerPullForm div
@@ -175,6 +176,7 @@ a:active {
 #outerPullForm
 {
 	display: none;
+	position: fixed;
 	background-color: whitesmoke;
 	margin-top: 100px;
 	margin-left: 200px;
