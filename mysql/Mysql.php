@@ -122,4 +122,30 @@ class Mysql {
 		}
 		return false;
 	}
+
+	public function GetLoggedInUser()
+	{
+		if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
+		{
+			$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblUser WHERE UserName = '{$_COOKIE[ "user" ]}' LIMIT 1" ) );
+			if( $query )
+			{
+				return $query[ "UserID" ];
+			}
+		}
+		return false;
+	}
+
+	public function PerformLikeOrDislike( $songID, $userID, $preference )
+	{
+		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblPreference WHERE UserID = $userID AND SongID = $songID" ) );
+		if( $query )
+		{
+			$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "UPDATE tblPreference SET Preference = '$preference' WHERE UserID = $userID AND SongID = $songID" ) );
+		}
+		else
+		{
+			$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "INSERT INTO tblPreference ( UserID, SongID, Preference ) VALUES ( '$userID', '$songID', '$preference' )" ) );
+		}
+	}
 }

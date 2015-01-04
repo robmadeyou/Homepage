@@ -10,6 +10,7 @@ var canvas = document.getElementById( "barCanvas" );
 var ctx = canvas.getContext( "2d" );
 var volume = 1;
 var songList = [];
+var currentSong;
 canvas.style.width = "100%";
 canvas.style.height = "100%";
 canvas.width  = canvas.offsetWidth;
@@ -18,7 +19,7 @@ canvas.height = canvas.offsetHeight;
 var self = this;
 
 function init( song ) {
-
+	currentSong = song;
 	$( "#img" ).attr( "src", "music/" + song.image );
 	$( "#songTitle" ).html( song.name );
 
@@ -222,6 +223,22 @@ function getRandomSong()
 			console.log( data );
 			self.next( data );
 		});
+}
+
+function voteOnSong( view )
+{
+	$.ajax(
+		{
+			url : "rate/",
+			type : "POST",
+			data : { songID : currentSong.id,
+					 preference : ( view ? 1 : 0 ) }
+		}
+	).done( function( data )
+		{
+			console.log( data );
+		});
+
 }
 
 function playNextSong()

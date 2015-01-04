@@ -52,7 +52,7 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 					?>
 				</div>
 				<div id="songTitle"></div>
-				<button type="button" id="nextButton" onclick="playNextSong()" >Next song!</button> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
+				<button type="button" id="nextButton" onclick="playNextSong()" >Next song!</button><button type="button" id="ilike" onclick="voteOnSong(true)">Up</button><button type="button" id="crap" onclick="voteOnSong(false)">Down</button><input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
 			</div>
 			<div id="bars">
 				<canvas id="barCanvas" height="1000"></canvas>
@@ -73,8 +73,8 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 				</div>
 			</div>
 		</div>
+		<br>
 		<footer>
-			<br>
 			<p>To NeverLost. Dear old friend!</p>
 		</footer>
 	</body>
