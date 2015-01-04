@@ -97,6 +97,17 @@ class Mysql {
 		return $song;
 	}
 
+	public function GetLikedSongs( $userID )
+	{
+		$song = [];
+		$query = mysqli_fetch_array( mysqli_query( $this->mysqli, "SELECT * FROM tblSong JOIN tblPreference ON tblSong.id = tblPreference.SongID WHERE tblPreference.UserID = $userID AND tblPreference.Preference = 1" ) );
+		while ( $query = mysqli_fetch_array( $mysql ) )
+		{
+			$song[] = $query;
+		}
+		return $song;
+	}
+
 	public function LogIn( $id )
 	{
 		$id = mysqli_real_escape_string( $this->mysqli, $id );

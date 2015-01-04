@@ -8,6 +8,10 @@ require_once( 'Filter/Filter.php' );
 	{
 		$song = $mysql->GetSongFromID( intval( $_POST[ "id" ] ) );
 	}
+	else if( isset( $_POST[ "liked" ] ) )
+	{
+		$song = $mysql->GetLikedSongs( $mysql->GetLoggedInUser() );
+	}
 	else
 	{
 		if( isset( $_POST[ "list" ] ) )

@@ -24,7 +24,7 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 	<?php
 		}
 	?>
-		<div id="overlay">
+		<div id="overlay"></div>
 			<div id="outerPullForm">
 				<a href="#" id="close"><img src="static/images/close.png" width="32" height="32" ></a>
 				<div id="innerPullForm">
@@ -44,15 +44,14 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 				</div>
 				<button type="button" id="finalizePull">Upload!</button>
 			</div>
-		</div>
 		<div id="holder">
 			<div id="titleBar">
 				<div id="loggedInNotifier"><?=
-						$loggedIn ? "You're logged as {$_COOKIE[ "user" ]}! <span id=\"logout\">Logout</span>" : "You're not logged in yet <span id=\"login\">Log in</span>";
+						$loggedIn ? "You're logged in as {$_COOKIE[ "user" ]}! <span id=\"logout\">Logout</span>" : "You're not logged in yet <span id=\"login\">Log in</span>";
 					?>
 				</div>
 				<div id="songTitle"></div>
-				<button type="button" id="nextButton" onclick="playNextSong()" >Next song!</button><button type="button" id="ilike" onclick="voteOnSong(true)">Up</button><button type="button" id="crap" onclick="voteOnSong(false)">Down</button><input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
+				<button type="button" id="nextButton" onclick="playNextSong()" >Next song!</button><?= $loggedIn ? '<button type="button" id="ilike" onclick="voteOnSong(true)">Up</button><button type="button" id="crap" onclick="voteOnSong(false)">Down</button>' : '' ?> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
 			</div>
 			<div id="bars">
 				<canvas id="barCanvas" height="1000"></canvas>
