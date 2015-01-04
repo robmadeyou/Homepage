@@ -108,7 +108,7 @@ function tick(evt) {
 		lastY = canvas.height - timeByteData[i] * 2;
 		lastX = i * width;
 		ctx.stroke();
-		ctx.fillRect( i * width, 0, width, freqByteData[i] * 2);
+		ctx.fillRect( i * ( width + 1 ), 0, width, freqByteData[i] * 2);
 	}
 }
 
@@ -206,6 +206,7 @@ $( "#finalizePull" ).click(function( event )
 	{
 		alert( data );
 		$( "#overlay" ).fadeOut();
+		$( "#outerPullForm" ).fadeOut();
 	});
 });
 

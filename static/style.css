@@ -182,6 +182,7 @@ a:active {
 	border-radius: 10px;
 	padding: 40px;
 	min-width: 600px;
+	z-index: 999999;
 }
 
 #outerPullForm #close
@@ -189,6 +190,7 @@ a:active {
 	position: absolute;
 	right: 0px;
 	top: 0px;
+	z-index: 9999999;
 }
 
 
