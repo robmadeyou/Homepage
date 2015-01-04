@@ -232,7 +232,7 @@ function voteOnSong( view )
 			url : "rate/",
 			type : "POST",
 			data : { songID : currentSong.id,
-					 preference : ( view ? 1 : 0 ) }
+				     preference : ( view ? 1 : 0 ) }
 		}
 	).done( function( data )
 		{

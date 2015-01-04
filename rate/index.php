@@ -1,4 +1,5 @@
 <?php
+	require_once( '../mysql/Mysql.php' );
 	if( isset( $_REQUEST[ "songID" ] ) && isset( $_REQUEST[ "preference" ] ) )
 	{
 		$mysql = new Mysql();
