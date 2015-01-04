@@ -47,11 +47,11 @@ if( isset( $_COOKIE ) && isset( $_COOKIE[ "user" ] ) )
 		</div>
 		<div id="holder">
 			<div id="titleBar">
-				<span id="loggedInNotifier"><?=
+				<div id="loggedInNotifier"><?=
 						$loggedIn ? "You're logged as {$_COOKIE[ "user" ]}! <span id=\"logout\">Logout</span>" : "You're not logged in yet <span id=\"login\">Log in</span>";
 					?>
-				</span>
-				<span id="songTitle"></span>
+				</div>
+				<div id="songTitle"></div>
 				<button type="button" id="nextButton" onclick="playNextSong()" >Next song!</button> <input id="volume" type="range" min="0" max="100" onchange="changeVolume( this.value )">
 			</div>
 			<div id="bars">
