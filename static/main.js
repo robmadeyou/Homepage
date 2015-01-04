@@ -288,6 +288,7 @@ $( document ).ready( function()
 	$( "#pull" ).click( function( event )
 	{
 		$( "#overlay" ).fadeIn();
+		$( "#outerPullForm" ).fadeIn();
 		event.preventDefault();
 		return false;
 	});
@@ -295,6 +296,7 @@ $( document ).ready( function()
 	$( "#close" ).click( function ( event )
 	{
 		$( "#overlay" ).fadeOut();
+		$( "#outerPullForm" ).fadeOut();
 		event.preventDefault();
 		return false;
 	});
